@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: var(--dark-blue);
+}
+
+:root {
+    --dark-blue: #0c1326;
+    --primary: #162246;
+    --white: #fefeff;
+    --blue-black: #070f1f;
+    --opa-gray: #b3b3b3;
+    --light-black: #212122;
+    --opa-black: #2e2a27;
+    --light-purple: #786dff;
+    --opa-white: rgba(254, 254, 255, .1);
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    max-width: 1440px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+.logo__size {
+    height: 3.5rem;
+}
+
+.gradient__card {
+    background-image: linear-gradient(to bottom, black, var(--primary))
+}
+
+.img__small {
+    height: 30px;
+    width: 30px;
+}
+
+.text__wrap {
+    white-space: nowrap;
+}
