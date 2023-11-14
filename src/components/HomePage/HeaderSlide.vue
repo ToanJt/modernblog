@@ -3,6 +3,7 @@ import { ref } from 'vue'
 const currentIndex = ref(0);
 const posts = [
     {
+        id: 5,
         image: require("@/assets/Home/header_slide/Tech.jpg"),
         title: "A Transformative Journey",
         author: "Jason Williams",
@@ -13,6 +14,7 @@ const posts = [
         timeRead: 2,
     },
     {
+        id: 2,
         image: require("@/assets/Home/header_slide/Nature.jpg"),
         title: "World Of Bioluminescence",
         author: "Emily Davis",
@@ -23,6 +25,7 @@ const posts = [
         timeRead: 8,
     },
     {
+        id: 6,
         image: require("@/assets/Home/header_slide/Culture.jpg"),
         title: "The Cultural Fusion",
         author: "Ayana Carter",
@@ -34,6 +37,12 @@ const posts = [
     },
 ]
 
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+function goPost(id) {
+    router.push({ name: "post", params: { idPost: id } });
+}
 
 const activeFlash = ref(false)
 function leftSlide() {
@@ -54,59 +63,247 @@ function rightSlide() {
 }
 
 
+// Slider
+// function test() {
+//     const slider = document.getElementsByClassName('slider');
+// const sliderItems = document.getElementsByClassName('slides');
+// function slide(wrapper, items) {
+//     let posX1 = 0,
+//         posX2 = 0,
+//         posInitial,
+//         posFinal,
+//         threshold = 100,
+//         slides = document.getElementsByClassName('img__box'),
+//         slidesLength = slides.length,
+//         slideSize = document.getElementsByClassName('img__box')[0].offsetWidth,
+//         firstSlide = slides[0],
+//         lastSlide = slides[slidesLength - 1],
+//         cloneFirst = firstSlide.cloneNode(true),
+//         cloneLast = lastSlide.cloneNode(true),
+//         index = 0,
+//         allowShift = true;
+
+//     items.appendChild(cloneFirst);
+//     items.insertBefore(cloneLast, firstSlide);
+//     wrapper.classList.add('loaded');
+
+
+//     // Mouse events
+//     items.onmousedown = dragStart;
+
+//     // Touch events
+//     items.addEventListener('touchstart', dragStart);
+//     items.addEventListener('touchend', dragEnd);
+//     items.addEventListener('touchmove', dragAction);
+
+//     // Transition events
+//     items.addEventListener('transitionend', checkIndex);
+
+//     function dragStart(e) {
+//         e = e || window.event;
+//         e.preventDefault();
+//         posInitial = items.offsetLeft;
+
+//         if (e.type == 'touchstart') {
+//             posX1 = e.touches[0].clientX;
+//         } else {
+//             posX1 = e.clientX;
+//             document.onmouseup = dragEnd;
+//             document.onmousemove = dragAction;
+//         }
+//     }
+
+//     function dragAction(e) {
+//         e = e || window.event;
+
+//         if (e.type == 'touchmove') {
+//             posX2 = posX1 - e.touches[0].clientX;
+//             posX1 = e.touches[0].clientX;
+//         } else {
+//             posX2 = posX1 - e.clientX;
+//             posX1 = e.clientX;
+//         }
+//         items.style.left = (items.offsetLeft - posX2) + "px";
+//     }
+
+//     function dragEnd() {
+//         posFinal = items.offsetLeft;
+//         if (posFinal - posInitial < -threshold) {
+//             shiftSlide(1, 'drag');
+//         } else if (posFinal - posInitial > threshold) {
+//             shiftSlide(-1, 'drag');
+//         } else {
+//             items.style.left = (posInitial) + "px";
+//         }
+
+//         document.onmouseup = null;
+//         document.onmousemove = null;
+//     }
+
+//     function shiftSlide(dir, action) {
+//         items.classList.add('shifting');
+
+//         if (allowShift) {
+//             if (!action) { posInitial = items.offsetLeft; }
+
+//             if (dir == 1) {
+//                 items.style.left = (posInitial - slideSize) + "px";
+//                 index++;
+//             } else if (dir == -1) {
+//                 items.style.left = (posInitial + slideSize) + "px";
+//                 index--;
+//             }
+//         }
+
+//         allowShift = false;
+//     }
+
+//     function checkIndex() {
+//         items.classList.remove('shifting');
+
+//         if (index == -1) {
+//             items.style.left = -(slidesLength * slideSize) + "px";
+//             index = slidesLength - 1;
+//         }
+
+//         if (index == slidesLength) {
+//             items.style.left = -(1 * slideSize) + "px";
+//             index = 0;
+//         }
+
+//         allowShift = true;
+//     }
+// }
+
+// slide(slider, sliderItems);
+// }
 </script>
 
 <template>
-    <section>
+    <section class="slider">
         <div class="main">
-            <div class="prevSlide">
-                <div @click="leftSlide" class="btn__left__arrow">
-                    <img class="left__arrow" src="@/assets/Home/header_slide/left-arrow.png" alt="">
-                </div>
-            </div>
-            <div class="img__box">
-                <div class="gradient__overlay">
-                    <div class="star__icon">
-                        <img src="@/assets/Home/header_slide/star.png" alt="">
-                    </div>
-                    <div class="text__info">
-                        <h3>{{ posts[currentIndex].title }}</h3>
-                        <div class="author">
-                            <img class="img__small" :src="posts[currentIndex].authorAvatar" alt="">
-                            <p>{{ posts[currentIndex].author }}</p>
-                        </div>
+
+            <div class="slides">
+                <div class="prevSlide">
+                    <div @click="leftSlide" class="btn__left__arrow">
+                        <img class="left__arrow" src="@/assets/Home/header_slide/left-arrow.png" alt="">
                     </div>
                 </div>
-                <img class="img__slide" :src="posts[currentIndex].image" alt="">
-                <div class="side__bar--right">
-                    <div>
-                        <p>{{ posts[currentIndex].monthPost }}</p>
-                        <p>{{ posts[currentIndex].dayPost }}</p>
-                    </div>
-                    <div>
-                        <p>•</p>
-                    </div>
-                    <div>
-                        <p>{{ posts[currentIndex].timeRead }} {{ posts[currentIndex].timeRead > 1 ? "mins" : "min" }}</p>
-                        <p>read</p>
-                    </div>
+                <div @click="goPost(posts[currentIndex].id)" class="img__box">
                     <div class="badge__card">
                         <p>{{ posts[currentIndex].badge }}</p>
                     </div>
+                    <div class="gradient__overlay">
+                        <div class="star__icon">
+                            <img src="@/assets/Home/header_slide/star.png" alt="">
+                        </div>
+                        <div class="text__info">
+                            <h3>{{ posts[currentIndex].title }}</h3>
+                            <div class="author">
+                                <img class="img__small" :src="posts[currentIndex].authorAvatar" alt="">
+                                <p>{{ posts[currentIndex].author }}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <img class="img__slide" :src="posts[currentIndex].image" alt="">
+                    <div class="side__bar--right">
+                        <div>
+                            <p>{{ posts[currentIndex].monthPost }}</p>
+                            <p>{{ posts[currentIndex].dayPost }}</p>
+                        </div>
+                        <div>
+                            <p>•</p>
+                        </div>
+                        <div>
+                            <p>{{ posts[currentIndex].timeRead }} {{ posts[currentIndex].timeRead > 1 ? "mins" : "min" }}
+                            </p>
+                            <p>read</p>
+                        </div>
+                    </div>
+                    <div :class="{ active__overlay__effect: activeFlash }" class="overlay__effect"></div>
                 </div>
-                <div :class="{ active__overlay__effect: activeFlash }" class="overlay__effect"></div>
-            </div>
-            <div class="nextSlide">
-                <div @click="rightSlide" class="btn__right__arrow">
-                    <img class="right__arrow" src="@/assets/Home/header_slide/right-arrow.png" alt="">
+                <div @click="goPost(posts[currentIndex].id)" class="tablet__slide img__box">
+                    <div class="badge__card">
+                        <p>{{ posts[currentIndex].badge }}</p>
+                    </div>
+                    <div class="gradient__overlay">
+                        <div class="star__icon">
+                            <img src="@/assets/Home/header_slide/star.png" alt="">
+                        </div>
+                        <div class="text__info">
+                            <h3>{{ posts[currentIndex].title }}</h3>
+                            <div class="author">
+                                <img class="img__small" :src="posts[currentIndex].authorAvatar" alt="">
+                                <p>{{ posts[currentIndex].author }}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <img class="img__slide" :src="posts[currentIndex].image" alt="">
+                    <div class="side__bar--right">
+                        <div>
+                            <p>{{ posts[currentIndex].monthPost }}</p>
+                            <p>{{ posts[currentIndex].dayPost }}</p>
+                        </div>
+                        <div>
+                            <p>•</p>
+                        </div>
+                        <div>
+                            <p>{{ posts[currentIndex].timeRead }} {{ posts[currentIndex].timeRead > 1 ? "mins" : "min" }}
+                            </p>
+                            <p>read</p>
+                        </div>
+                    </div>
+                    <div :class="{ active__overlay__effect: activeFlash }" class="overlay__effect"></div>
+                </div>
+                <div @click="goPost(posts[currentIndex].id)" class="tablet__slide img__box">
+                    <div class="badge__card">
+                        <p>{{ posts[currentIndex].badge }}</p>
+                    </div>
+                    <div class="gradient__overlay">
+                        <div class="star__icon">
+                            <img src="@/assets/Home/header_slide/star.png" alt="">
+                        </div>
+                        <div class="text__info">
+                            <h3>{{ posts[currentIndex].title }}</h3>
+                            <div class="author">
+                                <img class="img__small" :src="posts[currentIndex].authorAvatar" alt="">
+                                <p>{{ posts[currentIndex].author }}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <img class="img__slide" :src="posts[currentIndex].image" alt="">
+                    <div class="side__bar--right">
+                        <div>
+                            <p>{{ posts[currentIndex].monthPost }}</p>
+                            <p>{{ posts[currentIndex].dayPost }}</p>
+                        </div>
+                        <div>
+                            <p>•</p>
+                        </div>
+                        <div>
+                            <p>{{ posts[currentIndex].timeRead }} {{ posts[currentIndex].timeRead > 1 ? "mins" : "min" }}
+                            </p>
+                            <p>read</p>
+                        </div>
+                    </div>
+                    <div :class="{ active__overlay__effect: activeFlash }" class="overlay__effect"></div>
+                </div>
+                <div class="nextSlide">
+                    <div @click="rightSlide" class="btn__right__arrow">
+                        <img class="right__arrow" src="@/assets/Home/header_slide/right-arrow.png" alt="">
+                    </div>
                 </div>
             </div>
+
         </div>
     </section>
 </template>
 
 <style scoped>
-.main {
+.main .slides {
     background: url("@/assets/common/GlowBlue.png") no-repeat;
     background-size: contain;
     background-position: center;
@@ -115,10 +312,11 @@ function rightSlide() {
     align-items: center;
     position: relative;
     overflow: hidden;
+    margin: 0 5rem;
 }
 
 .main .img__box {
-    width: 888px;
+    width: 60%;
     display: flex;
     align-items: center;
     margin-top: 2.75rem;
@@ -127,6 +325,11 @@ function rightSlide() {
     border-radius: 1.5rem;
     transition: all 1s linear;
     opacity: 1;
+    cursor: pointer;
+}
+
+.main .tablet__slide {
+    display: none;
 }
 
 .overlay__effect {
@@ -233,6 +436,10 @@ function rightSlide() {
     z-index: 1;
 }
 
+.side__bar--right p {
+    color: var(--opa-gray);
+}
+
 .side__bar--right div {
     transform: rotate(90deg);
     white-space: nowrap;
@@ -255,14 +462,15 @@ function rightSlide() {
     justify-content: start;
 }
 
-.side__bar--right .badge__card {
+.badge__card {
     position: absolute;
     transform: rotate(360deg);
     background-color: var(--primary);
     padding: 6px 10px;
     border-radius: 8px;
     top: 2rem;
-    left: -3rem;
+    right: 5rem;
+    z-index: 2;
 }
 
 .badge__card p {
@@ -273,9 +481,18 @@ function rightSlide() {
 .nextSlide {
     height: 10rem;
     width: 10rem;
-    overflow: hidden;
     display: flex;
     align-items: center;
+    cursor: pointer;
+    position: absolute;
+}
+
+.prevSlide {
+    left: 6%;
+}
+
+.nextSlide {
+    right: 6%;
 }
 
 .btn__left__arrow {
@@ -305,7 +522,131 @@ function rightSlide() {
     justify-content: center;
     align-items: center;
     position: absolute;
-    transform: translateX(0rem);
     transition: transform .3s linear;
 }
+
+@media only screen and (max-width: 991px) {
+    .main {
+        overflow: unset;
+    }
+
+    .main .img__box {
+        width: 80%;
+        flex-direction: column;
+    }
+
+    .main .img__box .img__slide {
+        max-width: 100%;
+        z-index: 1;
+    }
+
+    .gradient__overlay {
+        z-index: 2;
+    }
+
+    .badge__card {
+        right: 2rem;
+    }
+
+    .text__info {
+        margin-bottom: 6rem;
+    }
+
+    .img__box .side__bar--right {
+        height: 60px;
+        width: 100%;
+        border-top-right-radius: 0;
+        flex-direction: row;
+        z-index: 3;
+    }
+
+    .side__bar--right div {
+        transform: none;
+        align-items: center;
+    }
+
+    .side__bar--right div:nth-child(2) {
+        margin: 20px;
+    }
+
+    .prevSlide,
+    .nextSlide {
+        width: 8rem;
+        height: 8rem;
+    }
+
+    .btn__left__arrow,
+    .btn__right__arrow {
+        width: 8rem;
+        height: 8rem;
+    }
+
+    .prevSlide {
+        left: 0;
+    }
+
+    .nextSlide {
+        right: 0;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+
+    .slider {
+        overflow: hidden;
+        width: 100%;
+        height: 500px;
+        padding: 0 2rem;
+        position: relative;
+        left: 0;
+    }
+
+    .main {
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        height: 500px;
+        border-radius: 1.5rem;
+    }
+
+    .main .slides {
+        display: flex;
+        position: relative;
+        height: 500px;
+        margin: 0;
+    }
+
+    .main .img__box {
+        width: 100%;
+        height: 500px;
+        margin-top: 0;
+        position: absolute;
+    }
+
+    .main .img__box .img__slide {
+        left: 0;
+        max-width: 703px;
+    }
+
+    .main .tablet__slide {
+        display: flex;
+    }
+
+    .img__box .side__bar--right p {
+        font-size: .9rem;
+    }
+    .text__info h3 {
+        font-size: 1.8rem;
+    }
+    .text__info p {
+        font-size: .9rem;
+    }
+
+    .prevSlide,
+    .nextSlide {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 479px) {}
 </style>

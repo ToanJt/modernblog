@@ -31,6 +31,12 @@
             subtitle: "Discover the future"
         },
     ]
+
+    import { useRouter } from 'vue-router';
+    const router = useRouter();
+    function goAllCategories(badge) {
+        router.push({ name: "all-categories", params:{ idCategories: badge } })
+    }
 </script>
 
 <template>
@@ -41,7 +47,7 @@
             <div></div>
         </div>
         <div class="main">
-            <div
+            <div @click="goAllCategories(category.title)"
             v-for="(category, index) in categories" :key="index"
             class="category">
                 <div class="gradient__overlay"></div>
@@ -58,9 +64,10 @@
 <style scoped>
 
 .container__title {
-    width: 94%;
+    width: 100%;
     margin-top: 6.75rem;
     display: flex;
+    padding: 0 3rem;
 }
 .container__title h1 {
     font-size: 2rem;
@@ -86,8 +93,9 @@
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 1rem;
-    width: 94%;
+    width: 100%;
     margin-top: 3rem;
+    padding: 0 3rem;
 }
 .gradient__overlay {
     background: linear-gradient(to bottom, transparent 20%, var(--primary));
@@ -106,6 +114,7 @@
     position: relative;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 .category:hover img {
     transform: scale(1.1);
@@ -132,5 +141,25 @@
     transition: .3s linear;
 }
 
+
+@media only screen and (max-width: 991px) {
+    .container__title {
+        padding: 0 3rem;
+    }
+    .main {
+        padding: 0 3rem;
+        grid-template-columns: 1fr;
+    }
+} 
+
+@media only screen and (max-width: 767px) {
+    .container__title {
+        padding: 0 1rem;
+    }
+    .main {
+        padding: 0 1rem;
+        grid-template-columns: 1fr;
+    }
+}
 
 </style>

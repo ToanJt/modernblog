@@ -1,47 +1,12 @@
 <script setup>
 import { ref } from 'vue'
-const products = [
-    {
-        id: 1,
-        active: ref(true),
-        idType: 2,
-        nameType: "accessories",
-        name: "Cap",
-        text: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.",
-        price: 49,
-        image: require("@/assets/Shop/CapWhite.png")
-    },
-    {
-        id: 2,
-        active: ref(false),
-        idType: 1,
-        nameType: "clothing",
-        name: "T-Shirt",
-        text: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.",
-        price: 99.99,
-        image: require("@/assets/Shop/ShirtWhite.png")
-    },
-    {
-        id: 3,
-        active: ref(false),
-        idType: 3,
-        nameType: "souvenir",
-        name: "Bag",
-        text: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.",
-        price: 39.32,
-        image: require("@/assets/Shop/BagWhite.png")
-    },
-    {
-        id: 4,
-        active: ref(false),
-        idType: 3,
-        nameType: "souvenir",
-        name: "Tumbler",
-        text: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.",
-        price: 119,
-        image: require("@/assets/Shop/TumblerWhite.png")
-    },
-]
+import { useRouter } from 'vue-router';
+import products from '@/products.js'
+
+const router = useRouter();
+function goProductDetail(id) {
+    router.push({ name: "product", params: { product: id }})
+}
 
 const chooseTypeProduct = ref(0);
 
@@ -52,9 +17,9 @@ function allType(idType) {
     else if (idType === 1) {
         return "Clothing"
     } else if (idType === 2) {
-        return "accessories"
+        return "Accessories"
     } else if (idType === 3) {
-        return "souvenir"
+        return "Souvenir"
     }
 }
 
@@ -116,11 +81,11 @@ const activeFilter = [
                 </div>
             </div>
             <div class="products">
-                <div v-for="item in filterProduct()" :key="item.id" class="product">
+                <div @click="goProductDetail(item.id)" v-for="item in filterProduct()" :key="item.id" class="product">
                     <img :src="item.image" alt="">
                     <h1>{{ item.name }}</h1>
                     <p>{{ item.text }}</p>
-                    <h3>$ {{ filters.formatMoney(item.price) }}</h3>
+                    <h3>$ {{ filters.formatMoney(item.price) }} USD</h3>
                 </div>
             </div>
         </div>
@@ -190,6 +155,7 @@ const activeFilter = [
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
 }
 
 .product:hover img {
@@ -220,5 +186,40 @@ const activeFilter = [
     font-weight: 400;
     font-size: 1rem;
     margin: 1.5rem 0 2.5rem 0;
+}
+
+@media only screen and (max-width: 1240px) {
+    .main {
+        width: 100%;
+        padding: 0 8rem;
+    }
+    .filterProduct .typeProduct {
+        padding: 1rem .7rem;
+    }
+    .products {
+        margin: 0;
+    }
+    .product img {
+        height: 200px;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .main {
+        width: 100%;
+        padding: 0 4rem;
+    }
+    .filterProduct {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .products {
+        grid-template-columns: 1fr;
+    }
+    .filterProduct {
+        margin: 3rem 0;
+    }
 }
 </style>

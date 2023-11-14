@@ -1,6 +1,7 @@
 <script setup>
 const content = [
     {
+        id: 10,
         background: require("@/assets/Home/featured/Culture2.jpg"),
         title: "The Digital Age",
         text: "Cultural heritage encompasses the tangible and intangible aspects of a society's identity. It includes art, architecture, folklore, language, music, and rituals, among others. Preserving cultural heritage is vital as it connects us to our past, shapes our present, and enriches our future. Globalization has brought cultures closer together, leading to increased interaction and exchange. However, it has also raised concerns about the homogenization of cultures, as the dominant global culture can overshadow and erode unique traditions and practices. Cultural heritage faces various threats, including urbanization, natural disasters, climate change, and political conflicts. Cultural artifacts and sites are often vulnerable to destruction, theft, or neglect. Technology, particularly digital tools, has become an invaluable asset in the preservation of cultural heritage. High-resolution imaging, 3D scanning, and digital archiving allow for the comprehensive documentation of artifacts, artworks, and historical sites. This digital preservation ensures that even if the physical artifacts are lost or damaged, their essence lives on in a digital form. Cultural heritage is a shared treasure that defines who we are and where we come from. In the digital age, technology serves as a double-edged sword, both posing challenges and providing solutions for its preservation. By harnessing the power of digital tools, we can document, protect, and celebrate our diverse cultural heritage ensuring...",
@@ -12,6 +13,7 @@ const content = [
         timeRead: 6,
     },
     {
+        id: 11,
         background: require("@/assets/Home/featured/Tech2.jpg"),
         title: "The 5G Technology",
         text: "Cultural heritage encompasses the tangible and intangible aspects of a society's identity. It includes art, architecture, folklore, language, music, and rituals, among others. Preserving cultural heritage is vital as it connects us to our past, shapes our present, and enriches our future. Globalization has brought cultures closer together, leading to increased interaction and exchange. However, it has also raised concerns about the homogenization of cultures, as the dominant global culture can overshadow and erode unique traditions and practices. Cultural heritage faces various threats, including urbanization, natural disasters, climate change, and political conflicts. Cultural artifacts and sites are often vulnerable to destruction, theft, or neglect. Technology, particularly digital tools, has become an invaluable asset in the preservation of cultural heritage. High-resolution imaging, 3D scanning, and digital archiving allow for the comprehensive documentation of artifacts, artworks, and historical sites. This digital preservation ensures that even if the physical artifacts are lost or damaged, their essence lives on in a digital form. Cultural heritage is a shared treasure that defines who we are and where we come from. In the digital age, technology serves as a double-edged sword, both posing challenges and providing solutions for its preservation. By harnessing the power of digital tools, we can document, protect, and celebrate our diverse cultural heritage ensuring...",
@@ -23,6 +25,13 @@ const content = [
         timeRead: 3,
     }
 ]
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+function goPost(id) {
+    router.push({ name: "post", params: { idPost: id } });
+}
+
 </script>
 
 <template>
@@ -32,7 +41,7 @@ const content = [
             <div></div>
         </div>
         <div class="main">
-            <div class="img__box" v-for="(item, index) in content" :key="index">
+            <div @click="goPost(item.id)" class="img__box" v-for="(item, index) in content" :key="index">
                 <div class="gradient__overlay">
                     <div class="star__icon">
                         <img src="@/assets/Home/header_slide/star.png" alt="">
@@ -80,26 +89,31 @@ const content = [
     align-items: center;
     flex-direction: column;
 }
+
 .container__title {
-    
     display: flex;
-    width: 94%;
+    width: 100%;
+    padding: 0 3rem;
 }
+
 .container__title h1 {
     font-size: 2rem;
     font-weight: 400;
-    width: 18%;
     text-align: left;
     line-height: 24px;
+    text-wrap: nowrap;
+    padding-right: 1rem;
 }
+
 .container__title div {
     border-bottom: 1px solid gray;
-    width: 82%;
+    width: 100%;
     margin-bottom: 12px;
 }
 
 .main {
-    width: 94%;
+    width: 100%;
+    padding: 0 3rem;
     margin-top: 3rem;
     margin-bottom: 2rem;
 }
@@ -111,16 +125,19 @@ const content = [
     align-items: center;
     margin-top: 1.2rem;
     position: relative;
+    cursor: pointer;
 }
 
 .img__box>img {
-    height: 500px;
+    height: 100%;
+    width: 100%;
     object-fit: cover;
     border-bottom-left-radius: 1.5rem;
     border-top-left-radius: 1.5rem;
     display: flex;
     justify-content: center;
     flex: 2.5;
+    padding-right: 200px;
 }
 
 .gradient__overlay {
@@ -136,7 +153,7 @@ const content = [
 .text__info {
     position: absolute;
     bottom: 2.5rem;
-    width: 966.86px;
+    width: calc(100% - 300px);
     margin-left: auto;
     margin-right: auto;
 }
@@ -168,11 +185,12 @@ const content = [
 
 .img__box .side__bar--right {
     background-color: var(--primary);
-    width: 100%;
+    width: 300px;
     height: 100%;
     border-bottom-right-radius: 1.5rem;
     border-top-right-radius: 1.5rem;
-    position: relative;
+    position: absolute;
+    right: 0;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -255,4 +273,53 @@ const content = [
     background: var(--blue-black);
     padding: 6px 10px;
     border-radius: 8px;
+}
+
+@media only screen and (max-width: 767px) {
+    .img__box {
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .img__box>img {
+        padding: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 1.5rem;
+    }
+
+    .img__box .side__bar--right {
+        display: flex;
+        align-items: center;
+        position: relative;
+        height: 100%;
+        width: 100%;
+        padding-top: 2rem;
+        border-top-right-radius: 0;
+        margin-bottom: 2rem;
+    }
+
+    .side__bar--right .text__content {
+        position: unset;
+        padding: 0 2rem;
+    }
+
+    .side__bar--right .author {
+        margin: 0;
+        z-index: 2;
+        padding-top: 1.5rem;
+    }
+
+    .side__bar--right .post__info {
+        margin: .8rem 0 3rem 0;
+        z-index: 2;
+    }
+
+    .badge__card {
+        top: unset;
+        bottom: 0;
+        left: unset;
+        z-index: 2;
+    }
+
+
 }</style>

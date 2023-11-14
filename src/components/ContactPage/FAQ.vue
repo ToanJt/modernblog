@@ -157,7 +157,7 @@ const questions = [
 }
 
 .show__ans {
-    height: 80px !important;
+    height: 90px !important;
     opacity: 1 !important;
     transition: .3s linear;
     text-align: center;
@@ -171,6 +171,25 @@ const questions = [
     opacity: 0;
     transition: .3s linear;
     overflow: hidden;
+}
+@media only screen and (max-width: 767px) {
+    .container__title {
+        width: 100%;
+        padding: 0 4rem;
+    }
+    .main > p {
+        width: 60%;
+    }
+    .show__ans {
+        height: 100px !important;
+    }
+    .questions {
+        width: 100%;
+        padding: 0 4rem;
+    }
+    .questions .question .title p {
+        text-align: left;
+    }
 }
 
 </style>

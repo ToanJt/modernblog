@@ -93,6 +93,8 @@ const values = [
     width: 100%;
     background: #0c1326;
     margin-bottom: 2rem;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
 }
 
 .value .number {
@@ -110,8 +112,7 @@ const values = [
     position: relative;
     width: 100%;
     background: var(--blue-black);
-    border-top-left-radius: 24px;
-    border-bottom-left-radius: 24px;
+    border-radius: 1.5rem;
 }
 
 .gradient__overlay {
@@ -153,4 +154,28 @@ const values = [
     object-fit: cover;
     border-top-right-radius: 24px;
     border-bottom-right-radius: 24px;
-}</style>
+}
+
+@media only screen and (max-width: 479px) {
+    .value {
+        flex-direction: column;
+        border-radius: unset;
+        border-bottom-left-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
+    }
+    .value img {
+        border-radius: 1.5rem;
+    }
+    .value .number {
+        margin: 0;
+    }
+    .value .content {
+        flex-direction: column;
+        border-bottom-left-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
+    }
+    .content .text {
+        margin: 2rem;
+    }
+}
+</style>

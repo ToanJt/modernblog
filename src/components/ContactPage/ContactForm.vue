@@ -13,23 +13,23 @@
             <form class="form">
                 <div class="name__email">
                     <div class="name">
-                        <label for="">Name</label>
-                        <input placeholder="John Doe" type="text">
+                        <label for="name">Name</label>
+                        <input placeholder="John Doe" id="name" type="text">
                     </div>
                     <div class="email">
-                        <label for="">Email</label>
-                        <input placeholder="example@email.com" type="email">
+                        <label for="email">Email</label>
+                        <input placeholder="example@email.com" id="email" type="email">
                     </div>
                 </div>
                 <div class="phone__more">
                     <div class="phone">
-                        <label for="">Phone Number</label>
-                        <input placeholder="(123) - 456 - 789" type="text">
+                        <label for="phone">Phone Number</label>
+                        <input placeholder="(123) - 456 - 789" id="phone" type="text">
                     </div>
                     <div class="more">
-                        <label for="">How Did You Hear About Us?</label>
+                        <label for="select">How Did You Hear About Us?</label>
                         <div class="select">
-                            <select name="" id="">
+                            <select name="" id="select">
                                 <option value="">Socials</option>
                                 <option value="">Search</option>
                                 <option value="">Referral</option>
@@ -39,8 +39,8 @@
                     </div>
                 </div>
                 <div class="message">
-                    <p>Message</p>
-                    <textarea placeholder="Your Message" name="" id="" cols="30" rows="7"></textarea>
+                    <label for="mess">Message</label>
+                    <textarea placeholder="Your Message" name="" id="mess" cols="30" rows="7"></textarea>
                 </div>
                 <button>Send Message</button>
             </form>
@@ -158,5 +158,20 @@
     background-color: var(--blue-black);
     transition: .5s linear;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 767px) {
+    .form .name__email {
+        flex-direction: column;
+    }
+    .name__email .email {
+        margin-top: 1.5rem;
+    }
+    .form .phone__more {
+        flex-direction: column;
+    }
+    .phone__more .more {
+        margin-top: 1.5rem;
+    }
 }
 </style>

@@ -69,12 +69,13 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 0 2rem;
     padding-top: 5rem;
     width: 100%;
 }
 
 .footer {
-    width: 90%;
+    width: 100%;
     display: flex;
     border-bottom: 1px solid rgba(120, 109, 255, .3);
     padding-bottom: 1.5rem;
@@ -118,7 +119,7 @@
 
 
 .copyring__info {
-    width: 90%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     font-size: 14px;
@@ -132,5 +133,57 @@
 }
 .copyring__info div p:first-child {
     padding-right: 2rem;
+}
+
+
+@media only screen and (max-width: 767px) {
+    .footer {
+        flex-direction: column;
+    }
+    .contact__info {
+        margin-bottom: 5rem;
+    }
+    .list__of__categories {
+        margin-bottom: 3rem;
+        grid-gap: 3rem;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    .contact__info {
+        text-align: center;
+    }
+    .contact__info > ul {
+        justify-content: center;
+    }
+    .list__of__categories {
+        flex-direction: column;
+        align-items: center;
+    }
+    .list__of__categories .categories {
+        text-align: center;
+    }
+    .categories > p {
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+    .categories ul li {
+        font-size: 1.1rem;
+    }
+
+    .copyring__info {
+        flex-direction: column;
+    }
+    .copyring__info > p {
+        font-size: 1rem;
+    }
+    .copyring__info .info {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1rem;
+    }
+    .copyring__info div p {
+        padding: 0 !important;
+    }
 }
 </style>

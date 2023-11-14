@@ -62,4 +62,15 @@
 
 .intro__space img:nth-child(2n) {
     margin-top: 5rem;
-}</style>
+}
+
+
+@media only screen and (max-width: 991px) {
+    .intro__text {
+        max-width: 60%;
+    }
+    .intro__space {
+        max-width: 100%;
+    }
+}
+</style>

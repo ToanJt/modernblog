@@ -1,20 +1,23 @@
 <script setup>
 
+
 const allPostsFirstRow = [
     {
         id: 1,
         title: "Way For A Green Future",
+        text: "Sustainability is no longer an optional endeavor for businesses.",
         author: "Marcus King",
         authorAvatar: require("@/assets/common/authors/author-4.jpg"),
         image: require("@/assets/Blog/AllPosts/Sustain.jpg"),
         monthPost: "September",
         dayPost: "09",
         timeRead: "1",
-        badge: "Subtainability",
+        badge: "Sustainability",
     },
     {
         id: 2,
         title: "World Of Bioluminescence",
+        text: "Sustainability is no longer an optional endeavor for businesses.",
         author: "Emily Davis",
         authorAvatar: require("@/assets/common/authors/author-2.jpg"),
         image: require("@/assets/Home/header_slide/Nature.jpg"),
@@ -28,6 +31,7 @@ const allPostsSecondRow = [
     {
         id: 3,
         title: "The Power Of Networking",
+        text: "Sustainability is no longer an optional endeavor for businesses.",
         author: "Ayana Carter",
         authorAvatar: require("@/assets/common/authors/author-3.jpg"),
         image: require("@/assets/Blog/AllPosts/Networking.jpg"),
@@ -39,8 +43,9 @@ const allPostsSecondRow = [
     {
         id: 4,
         title: "A Journey Through Time",
+        text: "Sustainability is no longer an optional endeavor for businesses.",
         author: "Jason Williams",
-        authorAvatar: require("@/assets/common/authors/author-4.jpg"),
+        authorAvatar: require("@/assets/common/authors/author-1.jpg"),
         image: require("@/assets/Blog/AllPosts/Music.jpg"),
         monthPost: "September",
         dayPost: "09",
@@ -49,36 +54,18 @@ const allPostsSecondRow = [
     },
 ];
 
-import { useRoute } from 'vue-router'
-import { watch, ref } from 'vue'
+import { useRouter } from "vue-router";
+const router = useRouter();
 
-const postView = ref(false);
-const getCurrentRoute = ref(useRoute().path);
-function currentRoute() {
-    if (getCurrentRoute.value === '/blog/post') {
-        postView.value = true;
-    }
-    else {
-        postView.value = false;
-    }
+function goPost(id) {
+  router.push({ name: "post", params: { idPost: id } });
 }
-
-watch(getCurrentRoute.value, (newVal, oldVal) => {
-    console.log(oldVal);
-    if(newVal === '/blog/post') {
-        postView.value = false;
-    } else if(newVal === '/blog') {
-        postView.value = true;
-    }
-})
-
 
 </script>
 
 <template>
     <section class="container">
-        <router-view v-if="postView"></router-view>
-        <div v-else class="main">
+        <div class="main">
             <div class="container__title">
                 <div></div>
                 <h1 class="text__wrap">All Posts</h1>
@@ -86,7 +73,7 @@ watch(getCurrentRoute.value, (newVal, oldVal) => {
             </div>
             <div class="posts">
                 <div class="post__row">
-                    <router-link @click="currentRoute" :to="{ name: 'post' }" class="post"
+                    <div @click="goPost(object.id)" class="post"
                         v-for="(object, index) in allPostsFirstRow" :key="index">
                         <img :src="object.image" alt="">
                         <div class="gradient__overlay"></div>
@@ -113,10 +100,11 @@ watch(getCurrentRoute.value, (newVal, oldVal) => {
                         <div class="badge__card">
                             <p>{{ object.badge }}</p>
                         </div>
-                    </router-link>
+                    </div>
                 </div>
                 <div class="post__row">
-                    <div class="post" v-for="(object, index) in allPostsSecondRow" :key="index">
+                    <div @click="goPost(object.id)" class="post"
+                        v-for="(object, index) in allPostsSecondRow" :key="index">
                         <img :src="object.image" alt="">
                         <div class="gradient__overlay"></div>
                         <div class="text__info">
@@ -156,11 +144,14 @@ watch(getCurrentRoute.value, (newVal, oldVal) => {
 .container {
     display: flex;
     justify-content: center;
+    background: url('@/assets/common/GlowBlue.png') no-repeat;
+    background-position: center;
 }
 
 .main {
-    width: 94%;
-    background: url('@/assets/common/GlowBlue.png');
+    width: 100%;
+    padding: 0 4rem;
+    
 }
 
 .container__title {
@@ -203,6 +194,8 @@ watch(getCurrentRoute.value, (newVal, oldVal) => {
     transition: linear .5s;
     overflow: hidden;
     border-radius: 24px;
+    color: white;
+    cursor: pointer;
 }
 
 .post:hover>img {
@@ -296,4 +289,38 @@ watch(getCurrentRoute.value, (newVal, oldVal) => {
     padding: .8rem 1.5rem;
     border-radius: 1.4rem;
     font-size: 1rem;
-}</style>
+}
+
+@media only screen and (max-width: 991px) {
+    .container {
+        padding: 0 3rem;
+    }
+    .post__row {
+        flex-direction: column;
+        display: block;
+        margin: 0;
+    }
+    .post__row .post {
+        margin-bottom: 1rem;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .container {
+        padding: 0 2rem;
+    }
+    .main {
+        padding: 0;
+    }
+    .post .text__info {
+        flex-direction: column;
+    }
+    .text__info .author {
+        margin-top: .5rem;
+    }
+    .side__bar--right {
+        width: 100%;
+        justify-content: center;
+    }
+}
+</style>

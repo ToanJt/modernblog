@@ -113,9 +113,9 @@ function activeSignIn() {
     display: flex;
     justify-content: center;
     height: 53px;
-    width: 10%;
+    width: auto;
     position: absolute;
-    right: 0;
+    right: 1rem;
     bottom: calc(50% - 30px);
     border-bottom-right-radius: 1rem;
     border-top-right-radius: 1rem;
@@ -171,5 +171,29 @@ function activeSignIn() {
 .formCenter {
     margin-left: 6rem;
     margin-right: 6rem;
+}
+
+
+@media only screen and (max-width: 991px) {
+    .formCenter {
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
+    .form div {
+        width: calc(100% - 6rem);
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .background {
+        display: none;
+    }
+    .form {
+        border-radius: 1.5rem;
+    }
+
+    .form h4 {
+        margin-bottom: 3rem;
+    }
 }
 </style>

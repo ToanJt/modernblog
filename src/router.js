@@ -9,30 +9,76 @@ import Contact from "@/pages/Contact";
 import SignIn from "@/pages/SignIn";
 
 import PostView from "@/components/PostView.vue";
+import CategoriesView from "@/components/CategoriesView.vue";
+import ProductView from "@/components/ProductView.vue";
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: "/", component: Home },
+    {
+      path: "/",
+      name: "home",
+      component: Home,
+    },
     {
       path: "/blog",
       name: "blog",
-      component: Blog,
       children: [
         {
-          path: "post",
+          path: "",
+          component: Blog,
+        },
+        {
+          path: "post/:idPost",
           name: "post",
           component: PostView,
+          props: true,
         },
       ],
     },
     { path: "/about", component: About },
-    { path: "/categories", component: Categories },
-    { path: "/shop", component: Shop },
-    { path: "/contact", component: Contact },
-    { path: "/signin", component: SignIn },
+    {
+      path: "/categories",
+      name: "categories",
+      children: [
+        {
+          path: "",
+          component: Categories,
+        },
+        {
+          path: "all-categories/:idCategories",
+          name: "all-categories",
+          component: CategoriesView,
+          props: true,
+        },
+      ],
+    },
+    {
+      path: "/shop",
+      name: "shop",
+      children: [
+        {
+          path: "",
+          component: Shop,
+        },
+        {
+          path: "product/:product",
+          name: "product",
+          component: ProductView,
+          props: true,
+        },
+      ],
+    },
+    { path: "/contact", name: "contact", component: Contact },
+    { path: "/signin", name: "signin", component: SignIn },
   ],
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      window.scrollTo(0, 0);
+    }
+  },
 });
-
 
 export default router;

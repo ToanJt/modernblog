@@ -4,7 +4,7 @@ import { ref } from 'vue'
 const latestPostFirstRow = [
     [
         {
-            id: 1,
+            id: 5,
             active: ref(false),
             title: "A Transformative Journey",
             author: "Jason Williams",
@@ -28,7 +28,7 @@ const latestPostFirstRow = [
             badge: "Nature",
         },
         {
-            id: 3,
+            id: 6,
             active: ref(false),
             title: "The Cultural Fusion",
             author: "Ayana Carter",
@@ -54,10 +54,10 @@ const latestPostFirstRow = [
             badge: "Sustainability",
         },
         {
-            id: 2,
+            id: 4,
             active: ref(true),
             title: "A Journey Through Time",
-            author: "Emily Davis",
+            author: "Jason Williams",
             authorAvatar: require("@/assets/common/authors/author-1.jpg"),
             image: require("@/assets/Home/header_slide/Music.jpg"),
             monthPost: "October",
@@ -66,7 +66,7 @@ const latestPostFirstRow = [
             badge: "Music",
         },
         {
-            id: 3,
+            id: 2,
             active: ref(false),
             title: "World Of Bioluminescence",
             author: "Emily Davis",
@@ -82,79 +82,79 @@ const latestPostFirstRow = [
 const latestPostSecondRow = [
     [
         {
-        id: 4,
-        active: ref(true),
-        title: "Fragile Balance Of Nature",
-        author: "Ayana Carter",
-        authorAvatar: require("@/assets/common/authors/author-2.jpg"),
-        image: require("@/assets/Home/header_slide/Nature2.jpg"),
-        monthPost: "October",
-        dayPost: "03",
-        timeRead: "1",
-        badge: "Nature",
-    },
-    {
-        id: 5,
-        active: ref(false),
-        title: "The Power Of Music",
-        author: "Jason Williams",
-        authorAvatar: require("@/assets/common/authors/author-4.jpg"),
-        image: require("@/assets/Home/header_slide/Music2.jpg"),
-        monthPost: "September",
-        dayPost: "09",
-        timeRead: "4",
-        badge: "Music",
-    },
-    {
-        id: 6,
-        active: ref(false),
-        title: "The Power Of Music",
-        author: "Jason Williams",
-        authorAvatar: require("@/assets/common/authors/author-4.jpg"),
-        image: require("@/assets/Home/header_slide/Business.jpg"),
-        monthPost: "September",
-        dayPost: "09",
-        timeRead: "4",
-        badge: "Music",
-    },
+            id: 8,
+            active: ref(true),
+            title: "Fragile Balance Of Nature",
+            author: "Ayana Carter",
+            authorAvatar: require("@/assets/common/authors/author-2.jpg"),
+            image: require("@/assets/Home/header_slide/Nature2.jpg"),
+            monthPost: "October",
+            dayPost: "03",
+            timeRead: "1",
+            badge: "Nature",
+        },
+        {
+            id: 9,
+            active: ref(false),
+            title: "The Power Of Music",
+            author: "Ayana Carter",
+            authorAvatar: require("@/assets/common/authors/author-4.jpg"),
+            image: require("@/assets/Home/header_slide/Music2.jpg"),
+            monthPost: "September",
+            dayPost: "09",
+            timeRead: "4",
+            badge: "Music",
+        },
+        {
+            id: 7,
+            active: ref(false),
+            title: "Mastering Productivity",
+            author: "Jason Williams",
+            authorAvatar: require("@/assets/common/authors/author-4.jpg"),
+            image: require("@/assets/Home/header_slide/Business.jpg"),
+            monthPost: "September",
+            dayPost: "09",
+            timeRead: "4",
+            badge: "Business",
+        },
     ],
     [
         {
-        id: 4,
-        active: ref(true),
-        title: "The Universe Is Vast",
-        author: "Emily Davis",
-        authorAvatar: require("@/assets/common/authors/author-2.jpg"),
-        image: require("@/assets/Home/header_slide/AstroV.jpg"),
-        monthPost: "November",
-        dayPost: "02",
-        timeRead: "22",
-        badge: "Astro",
-    },
-    {
-        id: 5,
-        active: ref(false),
-        title: "The Power Of Music",
-        author: "Jason Williams",
-        authorAvatar: require("@/assets/common/authors/author-4.jpg"),
-        image: require("@/assets/Home/header_slide/Music2.jpg"),
-        monthPost: "September",
-        dayPost: "09",
-        timeRead: "4",
-        badge: "Music",
-    },
-    {
-        id: 6,
-        active: ref(false),
-        title: "Mastering Productivity",
-        author: "Marcus King",
-        authorAvatar: require("@/assets/common/authors/author-1.jpg"),
-        image: require("@/assets/Home/header_slide/Tech2.jpg"),
-        monthPost: "October",
-        dayPost: "05",
-        timeRead: "5",
-        badge: "Technology",
-    },
+            id: 10,
+            active: ref(true),
+            title: "The Digital Age",
+            author: "Emily Davis",
+            authorAvatar: require("@/assets/common/authors/author-2.jpg"),
+            image: require("@/assets/posts/Culture2.jpg"),
+            monthPost: "November",
+            dayPost: "02",
+            timeRead: "22",
+            badge: "Culture",
+        },
+        {
+            id: 9,
+            active: ref(false),
+            title: "A Journey Through Time",
+            author: "Jason Williams",
+            authorAvatar: require("@/assets/common/authors/author-4.jpg"),
+            image: require("@/assets/Home/header_slide/Music2.jpg"),
+            monthPost: "September",
+            dayPost: "09",
+            timeRead: "4",
+            badge: "Music",
+        },
+        {
+            id: 11,
+            active: ref(false),
+            title: "Mastering Productivity",
+            author: "Marcus King",
+            authorAvatar: require("@/assets/common/authors/author-1.jpg"),
+            image: require("@/assets/Home/header_slide/Tech2.jpg"),
+            monthPost: "October",
+            dayPost: "05",
+            timeRead: "5",
+            badge: "Technology",
+        },
     ]
 ];
 
@@ -184,6 +184,14 @@ const renderArray = ref(0);
 function toggleArray(index) {
     renderArray.value = index;
 }
+
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+function goPost(id) {
+    router.push({ name: "post", params: { idPost: id } });
+}
+
 </script>
 
 <template>
@@ -191,13 +199,15 @@ function toggleArray(index) {
         <div class="filter__posts">
             <button :class="{ activeMoveEffectColor: activeFilter }"
                 @click="activeFilter = !activeFilter, toggleArray(0)">Trending</button>
-            <button :class="{ activeMoveEffectColor: !activeFilter }" @click="activeFilter = !activeFilter, toggleArray(1)">Latest</button>
+            <button :class="{ activeMoveEffectColor: !activeFilter }"
+                @click="activeFilter = !activeFilter, toggleArray(1)">Latest</button>
             <div :class="{ activeMoveEffect: !activeFilter }" class="activeFilterColor"></div>
         </div>
         <div class="posts">
             <div class="post__row">
-                <div :class="{ effectActive: object.active.value }" @mouseover="effect(object, latestPostFirstRow[renderArray])"
-                    class="post" v-for="(object, index) in latestPostFirstRow[renderArray]" :key="index">
+                <div @click="goPost(object.id)" :class="{ effectActive: object.active.value }"
+                    @mouseover="effect(object, latestPostFirstRow[renderArray])" class="post"
+                    v-for="(object, index) in latestPostFirstRow[renderArray]" :key="index">
                     <img :src="object.image" alt="">
                     <div class="gradient__overlay"></div>
                     <div :class="{ show__content: object.active.value }" class="text__info">
@@ -226,8 +236,9 @@ function toggleArray(index) {
                 </div>
             </div>
             <div class="post__row">
-                <div :class="{ effectActive: object.active.value }" @mouseover="effect(object, latestPostSecondRow[renderArray])"
-                    class="post" v-for="(object, index) in latestPostSecondRow[renderArray]" :key="index">
+                <div @click="goPost(object.id)" :class="{ effectActive: object.active.value }"
+                    @mouseover="effect(object, latestPostSecondRow[renderArray])" class="post"
+                    v-for="(object, index) in latestPostSecondRow[renderArray]" :key="index">
                     <img :src="object.image" alt="">
                     <div class="gradient__overlay"></div>
                     <div :class="{ show__content: object.active.value }" class="text__info">
@@ -254,6 +265,7 @@ function toggleArray(index) {
                         <p>{{ object.badge }}</p>
                     </div>
                 </div>
+                
             </div>
         </div>
     </section>
@@ -293,6 +305,7 @@ function toggleArray(index) {
     transition: .3s linear;
     position: relative;
     z-index: 1;
+    cursor: pointer;
 }
 
 .activeFilterColor {
@@ -421,4 +434,41 @@ function toggleArray(index) {
 .post:hover .text__info,
 .post:hover .side__bar--right {
     display: flex;
-}</style>
+}
+
+@media only screen and (max-width: 1300px) {
+    .container {
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .post__row {
+        flex-direction: column;
+        grid-gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .side__bar--right {
+        display: flex;
+    }
+
+    .post {
+        flex: none;
+    }
+
+    .post .text__info {
+        display: flex;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .img__box {
+        flex-direction: column;
+    }
+    .img__box>img {
+        border-radius: 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 479px) {}</style>

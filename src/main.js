@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import style from '@/assets/main.css'
 import router from '@/router.js'
+import {posts, goPost} from '@/posts.js'
 import { useRoute } from 'vue'
 import VueKinesis from "vue-kinesis"
 
@@ -16,8 +17,13 @@ app.config.globalProperties.filters = {
     }
 } 
 
+
+
 app.use(style)
 app.use(router)
+app.use(posts)
+app.use(goPost)
+
 app.use(useRoute)
 app.use(VueKinesis)
 app.use(PostView)

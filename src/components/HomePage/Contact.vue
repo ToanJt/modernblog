@@ -26,7 +26,8 @@
 
 <style scoped>
 .main {
-    width: 80%;
+    width: 100%;
+    padding: 0 8rem;
     margin-left: auto;
     margin-right: auto;
     height: 500px;
@@ -58,6 +59,7 @@
     left: 0;
     right: 0;
     border-radius: 1.5rem;
+    margin: 0 8rem;
 }
 .background {
     display: flex;
@@ -125,4 +127,53 @@
     transition: .2s linear;
     background-color: #424242;
 }
+
+@media only screen and (max-width: 991px) {
+    .main {
+        padding: 0 3rem;
+    }
+    .gradient__overlay {
+        margin: 0 3rem;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .contact {
+        padding: 0 2rem;
+    }
+    .contact h1 {
+        font-size: 2rem;
+        width: 80%;
+    }
+    .contact > div {
+        width: 80%;
+    }
+    .contact p {
+        font-size: .9rem;
+    }
+    .contact .input {
+        width: 80%;
+    }
+    .contact input {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    .contact input {
+        width: 50%;
+    }
+    .input .div2 {
+        width: 60px;
+    }
+}
+
+@media only screen and (max-width: 390px) {
+    .contact input {
+        width: 40%;
+    }
+    .input .div2 {
+        width: 60px;
+    }
+} 
 </style>

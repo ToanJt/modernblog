@@ -99,7 +99,8 @@ const currentIndex = ref(0);
 }
 
 .container {
-    background: linear-gradient(to bottom, transparent 40%, var(--dark-blue) 90%), url("@/assets/common/GlowBlue.png")
+    background: linear-gradient(to bottom, transparent 40%, var(--dark-blue) 90%), url("@/assets/common/GlowBlue.png");
+    background-position: center;
 }
 
 .main {
@@ -234,6 +235,7 @@ const currentIndex = ref(0);
     width: 198px;
     background: var(--blue-black);
     overflow: hidden;
+    cursor: pointer;
 }
 .member .background {
     width: 100%;
@@ -272,6 +274,48 @@ const currentIndex = ref(0);
     left: -0.5rem;
     right: 2rem;
     overflow: hidden;
+}
+
+
+@media only screen and (max-width: 991px) {
+    .container__title {
+        width: 70%;
+    }
+
+    .info__member {
+        flex-direction: column;
+    }
+
+    .team {
+        width: 70%;
+    }
+    .members {
+        flex-direction: column;
+    }
+    .members .member {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    .info__member {
+        border-radius: 1.5rem;
+        overflow: hidden;
+    }
+    .info__member .avatar {
+        height: 100%;
+        border-radius: unset;
+    }
+    .avatar img {
+        width: 100%;
+        object-fit: cover;
+        border-radius: unset;
+    }
+    .gradient__overlay {
+        border-radius: unset;
+    }
+    .info__member .info {
+        border-radius: unset;
+        width: 100%;
+    }
 }
 
 </style>
