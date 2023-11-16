@@ -9,7 +9,16 @@ const indexPost = props.idPost-1;
 </script>
 
 <template>
-    <section class="container">
+    <section v-motion :initial="{
+                opacity: 0
+            }"
+            :enter="{
+                x: 0,
+                opacity: 1,
+                transition: {
+                    duration: 500
+                }
+            }" class="container">
         <div class="main">
             <div class="header">
                 <button class="badge__card">{{ posts[indexPost].badge }}</button>

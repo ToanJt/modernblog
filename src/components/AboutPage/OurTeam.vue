@@ -48,12 +48,26 @@ const currentIndex = ref(0);
 <template>
     <section class="container">
         <div class="main">
-            <div class="container__title">
+            <div v-motion :initial="{
+                rotateX: 90
+            }" :enter="{
+                rotateX: 0,
+    transition: {
+        duration: 500,
+    }
+}" class="container__title">
                 <div></div>
                 <h1 class="text__wrap">Our Team</h1>
                 <div></div>
             </div>
-            <div class="team">
+            <div v-motion :initial="{
+                opacity: 0,
+            }" :visibleOnce="{
+                opacity: 1,
+    transition: {
+        duration: 1000,
+    }
+}" class="team">
                 <div class="info__member">
                     <div class="avatar">
                         <div class="gradient__overlay"></div>

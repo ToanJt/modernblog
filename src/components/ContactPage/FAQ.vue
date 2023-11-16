@@ -77,7 +77,14 @@ const questions = [
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum convallis, dolor sed consectetur
                 gravida, neque sem tristique.
             </p>
-            <div class="questions">
+            <div v-motion :initial="{
+                y: 100,
+            }" :visibleOnce="{
+                y: 0,
+    transition: {
+        duration: 1000,
+    }
+}" class="questions">
                 <div
                 v-for="(quest, index) in questions" :key="index"
                 @click="toggleAns(quest)" class="question">

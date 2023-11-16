@@ -66,13 +66,29 @@ function goPost(id) {
 <template>
     <section class="container">
         <div class="main">
-            <div class="container__title">
+            <div v-motion :initial="{
+        opacity: 0
+    }" :enter="{
+        opacity: 1,
+        transition: {
+            duration: 1000,
+        }
+    }" class="container__title">
                 <div></div>
                 <h1 class="text__wrap">All Posts</h1>
                 <div></div>
             </div>
             <div class="posts">
-                <div class="post__row">
+                <div v-motion :initial="{
+        opacity: 0,
+        y: 100,
+    }" :enter="{
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 1000,
+        }
+    }" class="post__row">
                     <div @click="goPost(object.id)" class="post"
                         v-for="(object, index) in allPostsFirstRow" :key="index">
                         <img :src="object.image" alt="">
@@ -102,7 +118,16 @@ function goPost(id) {
                         </div>
                     </div>
                 </div>
-                <div class="post__row">
+                <div v-motion :initial="{
+        opacity: 0,
+        y: 100,
+    }" :enter="{
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 2000,
+        }
+    }" class="post__row">
                     <div @click="goPost(object.id)" class="post"
                         v-for="(object, index) in allPostsSecondRow" :key="index">
                         <img :src="object.image" alt="">

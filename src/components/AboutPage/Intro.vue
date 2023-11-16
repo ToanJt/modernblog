@@ -1,6 +1,13 @@
 <template>
     <section class="container">
-        <div class="intro__text">
+        <div v-motion :initial="{
+                rotateX: 90
+            }" :enter="{
+                rotateX: 0,
+    transition: {
+        duration: 1500,
+    }
+}" class="intro__text">
             <h1>Pushing the the boundaries of the blogosphere</h1>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -8,10 +15,38 @@
             <p>Suspendisse varius enim in eros elementum tristique.</p>
         </div>
         <div class="intro__space">
-            <img src="@/assets/About/Nature2.jpg" alt="" />
-            <img src="@/assets/About/AbstractV.jpg" alt="" />
-            <img src="@/assets/About/Nature.jpg" alt="" />
-            <img src="@/assets/About/AstroV.jpg" alt="" />
+            <img v-motion :initial="{
+                y: 100
+            }" :enter="{
+    y: 0,
+    transition: {
+        duration: 1500,
+    }
+}" src="@/assets/About/Nature2.jpg" alt="" />
+            <img v-motion :initial="{
+                y: -100
+            }" :enter="{
+    y: 0,
+    transition: {
+        duration: 1500,
+    }
+}" src="@/assets/About/AbstractV.jpg" alt="" />
+            <img v-motion :initial="{
+                y: 100
+            }" :enter="{
+    y: 0,
+    transition: {
+        duration: 1500,
+    }
+}" src="@/assets/About/Nature.jpg" alt="" />
+            <img v-motion :initial="{
+                y: -100
+            }" :enter="{
+    y: 0,
+    transition: {
+        duration: 1500,
+    }
+}" src="@/assets/About/AstroV.jpg" alt="" />
         </div>
     </section>
 </template>
@@ -36,6 +71,7 @@
     font-weight: 400;
     margin-bottom: 1rem;
 }
+
 .intro__text p {
     line-height: 24px;
     color: var(--opa-gray);
@@ -69,6 +105,7 @@
     .intro__text {
         max-width: 60%;
     }
+
     .intro__space {
         max-width: 100%;
     }

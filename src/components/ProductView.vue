@@ -38,14 +38,32 @@ function addToCart(id, quantity) {
 <template>
     <section class="container">
         <div class="main">
-            <div :class="{'showDisplay': showDisplayCart}" class="addAnimation">
+            <div :class="{ 'showDisplay': showDisplayCart }" class="addAnimation">
                 <img :src="product.image" alt="">
             </div>
             <div class="product">
-                <div class="image">
+                <div v-motion :initial="{
+                    x: -200,
+                    opacity: 0
+                }" :enter="{
+    x: 0,
+    opacity: 1,
+    transition: {
+        duration: 500
+    }
+}" class="image">
                     <img :src="product.image" alt="">
                 </div>
-                <form class="product__info">
+                <form v-motion :initial="{
+                    x: 200,
+                    opacity: 0
+                }" :enter="{
+    x: 0,
+    opacity: 1,
+    transition: {
+        duration: 500
+    }
+}" class="product__info">
                     <h1>{{ product.name }}</h1>
                     <div class="price">
                         <h2>$ {{ (product.price).toFixed(2) }} USD</h2>
@@ -64,7 +82,17 @@ function addToCart(id, quantity) {
                     </div>
                 </form>
             </div>
-            <div class="detail">
+            <div v-motion :initial="{
+                y: 200,
+                opacity: 0
+            }"
+            :enter="{
+                y: 0,
+                opacity: 1,
+                transition: {
+                    duration: 500
+                }
+            }" class="detail">
                 <div class="text__block">
                     <h1>About The Product</h1>
                     <p>Our exclusive collection is carefully crafted to provide comfort, style, and durability. Made with
@@ -109,6 +137,7 @@ function addToCart(id, quantity) {
 .showDisplay {
     display: block !important;
 }
+
 .addAnimation {
     background-color: var(--primary);
     padding: 2rem;
@@ -229,6 +258,7 @@ function addToCart(id, quantity) {
     cursor: pointer;
     transition: .1s linear;
 }
+
 .addButton:hover {
     transition: .1s linear;
     border: 1px solid var(--primary);
@@ -272,12 +302,15 @@ function addToCart(id, quantity) {
         flex-direction: column;
         width: 100%;
     }
+
     .product .product__info {
         margin-left: 0;
     }
+
     .product .image {
         margin-bottom: 2rem;
     }
+
     .detail {
         width: 100%;
     }
@@ -293,24 +326,29 @@ function addToCart(id, quantity) {
     .product .image img {
         height: 14rem;
     }
+
     .product__info h1 {
         font-size: 2rem;
     }
+
     .product__info h2 {
         font-size: 1.6rem;
     }
+
     .product__info h2:last-child {
         font-size: 1.2rem;
     }
+
     .product__info .addButton {
         width: 35%;
         padding: .8rem;
     }
+
     .addButton p {
         font-size: .6rem;
     }
+
     .detail {
         text-align: center;
     }
-}
-</style>
+}</style>

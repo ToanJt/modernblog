@@ -71,7 +71,14 @@ const activeFilter = [
 
 <template>
     <section class="container">
-        <div class="main">
+        <div v-motion :initial="{
+                y: 100,
+            }" :enter="{
+                y: 0,
+    transition: {
+        duration: 1000,
+    }
+}" class="main">
             <div class="filterProduct">
                 <div :class="{ active: type.active.value }"
                     @click="chooseHandle(type.id)"

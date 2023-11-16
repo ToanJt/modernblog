@@ -17,12 +17,28 @@ function refresh() {
 <template>
     <section class="container">
         <div class="main">
-            <div class="container__title">
+            <div v-motion :initial="{
+                rotateX: 90,
+            }"
+            :enter="{
+                rotateX: 0,
+                transition: {
+                    duration: 500
+                }
+            }" class="container__title">
                 <div></div>
                 <h1 class="text__wrap">Posts In Culture</h1>
                 <div></div>
             </div>
-            <div class="posts">
+            <div v-motion :initial="{
+                opacity: 0
+            }"
+            :enter="{
+                opacity: 1,
+                transition: {
+                    duration: 1500
+                }
+            }" class="posts">
                 <div class="post" v-for="(object, index) in refresh()" :key="index">
                     <img :src="object.image" alt="">
                     <div class="gradient__overlay"></div>

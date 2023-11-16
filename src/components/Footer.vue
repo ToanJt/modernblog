@@ -1,5 +1,14 @@
 <template>
-    <section class="base__footer">
+    <section v-motion :initial="{
+        opacity: 0,
+        y: 100
+    }" :visibleOnce="{
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 200,
+        }
+    }" class="base__footer">
         <section class="container">
         <div class="footer">
             <div class="contact__info">

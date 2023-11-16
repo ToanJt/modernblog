@@ -21,7 +21,21 @@ export default {
         <HeaderSlide />
         <LatestPosts />
         <FeaturedPosts />
-        <Categories />
-        <Contact />
+        <Categories v-motion :initial="{
+        opacity: 0
+    }" :visibleOnce="{
+        opacity: 1,
+        transition: {
+            duration: 1000,
+        }
+    }"/>
+        <Contact v-motion :initial="{
+        opacity: 0
+    }" :visibleOnce="{
+        opacity: 1,
+        transition: {
+            duration: 500,
+        }
+    }" />
     </section>
 </template>

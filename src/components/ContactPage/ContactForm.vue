@@ -1,6 +1,13 @@
 <template>
     <section class="container">
-        <div class="main">
+        <div v-motion :initial="{
+                y: 100,
+            }" :enter="{
+                y: 0,
+    transition: {
+        duration: 1000,
+    }
+}" class="main">
             <div class="container__title">
                 <div></div>
                 <h1 class="text__wrap">Contact Us</h1>

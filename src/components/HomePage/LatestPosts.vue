@@ -196,14 +196,28 @@ function goPost(id) {
 
 <template>
     <section class="container">
-        <div class="filter__posts">
+        <div v-motion :initial="{
+        opacity: 0
+    }" :enter="{
+        opacity: 1,
+        transition: {
+            duration: 1000,
+        }
+    }" class="filter__posts">
             <button :class="{ activeMoveEffectColor: activeFilter }"
                 @click="activeFilter = !activeFilter, toggleArray(0)">Trending</button>
             <button :class="{ activeMoveEffectColor: !activeFilter }"
                 @click="activeFilter = !activeFilter, toggleArray(1)">Latest</button>
             <div :class="{ activeMoveEffect: !activeFilter }" class="activeFilterColor"></div>
         </div>
-        <div class="posts">
+        <div v-motion :initial="{
+        opacity: 0
+    }" :visibleOnce="{
+        opacity: 1,
+        transition: {
+            duration: 1000,
+        }
+    }" class="posts">
             <div class="post__row">
                 <div @click="goPost(object.id)" :class="{ effectActive: object.active.value }"
                     @mouseover="effect(object, latestPostFirstRow[renderArray])" class="post"

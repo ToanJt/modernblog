@@ -29,11 +29,41 @@ function activeSignIn() {
 <template>
     <section class="container">
         <div class="main">
-            <div class="background">
+            <div v-motion :initial="{
+                x: -200,
+                opacity: 0
+            }"
+            :enter="{
+                x: 0,
+                opacity: 1,
+                transition: {
+                    duration: 500
+                }
+            }" class="background">
                 <img src="@/assets/Home/header_slide/Nature.jpg" alt="">
             </div>
-            <SignUp @activeSignIn="activeSignIn" v-if="activeSignUp" />
-            <form v-if="!activeSignUp" class="form">
+            <SignUp v-motion :initial="{
+                x: -200,
+                opacity: 0
+            }"
+            :enter="{
+                x: 0,
+                opacity: 1,
+                transition: {
+                    duration: 500
+                }
+            }" @activeSignIn="activeSignIn" v-if="activeSignUp" />
+            <form v-motion :initial="{
+                x: 200,
+                opacity: 0
+            }"
+            :enter="{
+                x: 0,
+                opacity: 1,
+                transition: {
+                    duration: 500
+                }
+            }" v-if="!activeSignUp" class="form">
                 <p class="formCenter">Sign In</p>
                 <p class="formCenter">Welcome to Modern Blog</p>
                 <div class="formCenter name">

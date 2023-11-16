@@ -35,12 +35,26 @@ function goPost(id) {
 </script>
 
 <template>
-    <section class="container">
+    <section v-motion :initial="{
+        opacity: 0
+    }" :visibleOnce="{
+        opacity: 1,
+        transition: {
+            duration: 1000,
+        }
+    }"  class="container">
         <div class="container__title">
             <h1>Featured Posts</h1>
             <div></div>
         </div>
-        <div class="main">
+        <div v-motion :initial="{
+        opacity: 0
+    }" :visibleOnce="{
+        opacity: 1,
+        transition: {
+            duration: 1000,
+        }
+    }"  v-motion-fade class="main">
             <div @click="goPost(item.id)" class="img__box" v-for="(item, index) in content" :key="index">
                 <div class="gradient__overlay">
                     <div class="star__icon">

@@ -184,12 +184,31 @@ function rightSlide() {
         <div class="main">
 
             <div class="slides">
-                <div class="prevSlide">
+                <div v-motion :initial="
+                {
+                    x: -100
+                }"
+                :enter="
+                {
+                    x: 0,
+                    transition: {
+                        duration: 500
+                    }
+                }" class="prevSlide">
                     <div @click="leftSlide" class="btn__left__arrow">
                         <img class="left__arrow" src="@/assets/Home/header_slide/left-arrow.png" alt="">
                     </div>
                 </div>
-                <div @click="goPost(posts[currentIndex].id)" class="img__box">
+                <div v-motion :initial="
+                {
+                    scale: .5
+                }"
+                :enter="{
+                    scale: 1,
+                    transition: {
+                        duration: 10
+                    }
+                }" @click="goPost(posts[currentIndex].id)" class="img__box">
                     <div class="badge__card">
                         <p>{{ posts[currentIndex].badge }}</p>
                     </div>
@@ -291,7 +310,17 @@ function rightSlide() {
                     </div>
                     <div :class="{ active__overlay__effect: activeFlash }" class="overlay__effect"></div>
                 </div>
-                <div class="nextSlide">
+                <div v-motion :initial="
+                {
+                    x: 100
+                }"
+                :enter="
+                {
+                    x: 0,
+                    transition: {
+                        duration: 500
+                    }
+                }" class="nextSlide">
                     <div @click="rightSlide" class="btn__right__arrow">
                         <img class="right__arrow" src="@/assets/Home/header_slide/right-arrow.png" alt="">
                     </div>
@@ -530,6 +559,7 @@ function rightSlide() {
     .main .slides {
         margin: 0 10rem;
     }
+
     .main .img__box {
         width: auto;
     }
@@ -651,9 +681,11 @@ function rightSlide() {
     .img__box .side__bar--right p {
         font-size: .9rem;
     }
+
     .text__info h3 {
         font-size: 1.8rem;
     }
+
     .text__info p {
         font-size: .9rem;
     }

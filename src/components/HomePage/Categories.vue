@@ -31,7 +31,7 @@
 </script>
 
 <template>
-    <section class="container">
+    <section v-motion-fade class="container">
         <div class="container__title">
             <h1 class="text__wrap">Featured Categories</h1>
             <div></div>

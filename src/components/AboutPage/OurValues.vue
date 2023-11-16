@@ -24,11 +24,25 @@ const values = [
 <template>
     <section class="container">
         <div class="main">
-            <div class="container__title">
+            <div v-motion :initial="{
+                rotateX: 90
+            }" :enter="{
+                rotateX: 0,
+    transition: {
+        duration: 500,
+    }
+}" class="container__title">
                 <h1 class="text__wrap">Our Values</h1>
                 <div></div>
             </div>
-            <div class="values">
+            <div v-motion :initial="{
+                opacity: 0,
+            }" :visibleOnce="{
+                opacity: 1,
+    transition: {
+        duration: 1000,
+    }
+}" class="values">
                 <div v-for="(value, index) in values" :key="index" class="value">
                     <div class="number">
                         <p>{{ value.id }}</p>
