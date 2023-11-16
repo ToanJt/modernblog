@@ -525,12 +525,13 @@ function rightSlide() {
 }
 
 
+
 @media only screen and (min-width: 1501px) {
     .main .slides {
-        margin: 0 12rem;
+        margin: 0 10rem;
     }
     .main .img__box {
-        width: 60%;
+        width: auto;
     }
 }
 
