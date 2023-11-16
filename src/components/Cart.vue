@@ -45,15 +45,7 @@ function removeItem(id) {
 
 <template>
     <section>
-        <div v-motion :initial="{
-            opacity: 0,
-        }"
-        :enter="{
-            opacity: 1,
-            transition: {
-                duration: 300,
-            }
-        }" @click="close()" v-if="props.activeCloseModal" class="cart">
+        <div @click="close()" v-if="props.activeCloseModal" class="cart">
             <div @click="func" class="background">
                 <div class="cart__header">
                     <h1>Your cart</h1>
