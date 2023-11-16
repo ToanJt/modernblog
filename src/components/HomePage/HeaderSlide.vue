@@ -355,6 +355,7 @@ function rightSlide() {
     transition: all 1s linear;
     opacity: 1;
     cursor: pointer;
+    z-index: 2;
 }
 
 .main .tablet__slide {
