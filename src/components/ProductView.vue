@@ -264,4 +264,53 @@ function addToCart(id, quantity) {
 .text__block p {
     color: var(--opa-gray);
     line-height: 1.5rem;
-}</style>
+}
+
+
+@media only screen and (max-width: 991px) {
+    .product {
+        flex-direction: column;
+        width: 100%;
+    }
+    .product .product__info {
+        margin-left: 0;
+    }
+    .product .image {
+        margin-bottom: 2rem;
+    }
+    .detail {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .product .image img {
+        height: 20rem;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    .product .image img {
+        height: 14rem;
+    }
+    .product__info h1 {
+        font-size: 2rem;
+    }
+    .product__info h2 {
+        font-size: 1.6rem;
+    }
+    .product__info h2:last-child {
+        font-size: 1.2rem;
+    }
+    .product__info .addButton {
+        width: 35%;
+        padding: .8rem;
+    }
+    .addButton p {
+        font-size: .6rem;
+    }
+    .detail {
+        text-align: center;
+    }
+}
+</style>

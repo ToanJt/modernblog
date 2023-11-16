@@ -471,4 +471,29 @@ function goPost(id) {
     }
 }
 
-@media only screen and (max-width: 479px) {}</style>
+@media only screen and (max-width: 479px) {
+    .post > .text__info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .text__info > h3 {
+        margin-bottom: .5rem;
+    }
+    .side__bar--right {
+        left: 2rem;
+    }
+    .filter__posts {
+        padding: .8rem .8rem;
+    }
+    .filter__posts button {
+        padding: .8rem .8rem;
+    }
+    .activeFilterColor {
+        left: 1rem;
+        padding-right: 6.5rem;
+    }
+    .activeMoveEffect {
+        left: 1.5rem;
+        padding-right: 5.5rem;
+    }
+}</style>

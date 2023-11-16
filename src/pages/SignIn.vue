@@ -214,4 +214,13 @@ function activeSignIn() {
         margin-bottom: 3rem;
     }
 }
+
+@media only screen and (max-width: 479px) {
+    .form {
+        display: block;
+    }
+    .form p {
+        margin-top: 2rem;
+    }
+}
 </style>

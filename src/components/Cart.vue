@@ -97,6 +97,7 @@ function removeItem(id) {
 
 .background {
     width: 30rem;
+    margin: 0 2rem;
     background: white;
 }
 

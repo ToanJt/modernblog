@@ -187,4 +187,34 @@ const indexPost = props.idPost-1;
     margin-top: 1.5rem;
     margin-bottom: 5rem;
 }
+
+
+@media only screen and (max-width: 991px) {
+    .header .sub__title {
+        width: 80%;
+    }
+    .body {
+        grid-template-columns: 1fr;
+    }
+    .author {
+        width: 60%;
+        justify-self: center;
+        margin-top: 2rem;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .author {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    .author {
+        width: 90%;
+    }
+    .header h1 {
+        font-size: 2.2rem;
+    }
+}
 </style>

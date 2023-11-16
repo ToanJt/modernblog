@@ -51,8 +51,8 @@ function refresh() {
                     </div>
                 </div>
             </div>
-            <Categories class="test" />
         </div>
+        <Categories />
 
     </section>
 </template>
@@ -61,17 +61,19 @@ function refresh() {
 
 .container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    background-image: linear-gradient(to bottom, transparent 30%, var(--dark-blue) 50%), url("@/assets/common/GlowBlue.png");
+    background-position: 0 0, 50% 0;
+    background-repeat: repeat, no-repeat;
+    background-size: auto, cover;
 }
 
 .main {
     width: 90%;
     display: flex;
     flex-direction: column;
-    background-image: linear-gradient(to bottom, transparent 30%, var(--dark-blue) 50%), url("@/assets/common/GlowBlue.png");
-    background-position: 0 0, 50% 0;
-    background-repeat: repeat, no-repeat;
-    background-size: auto, cover;
     margin-bottom: 6.75rem;
 }
 
@@ -192,5 +194,27 @@ function refresh() {
     padding: 6px 10px;
     border-radius: 8px;
     background: var(--primary);
+}
+
+
+@media only screen and (max-width: 991px) {
+    .posts {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    .post .text__info {
+        flex-direction: column;
+        text-align: center;
+    }
+    .text__info > h3 {
+        margin-bottom: .5rem;
+    }
+    .side__bar--right {
+        justify-content: center;
+        left: 0;
+        right: 0;
+    }
 }
 </style>
