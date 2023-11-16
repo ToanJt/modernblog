@@ -316,7 +316,7 @@ function rightSlide() {
 }
 
 .main .img__box {
-    width: 60%;
+    width: auto;
     display: flex;
     align-items: center;
     margin-top: 2.75rem;
@@ -339,7 +339,6 @@ function rightSlide() {
     top: 0;
     left: 0;
     bottom: 0;
-    right: 0;
     background-image: linear-gradient(to right bottom, #022839, #052335, #081e30, #0a192b, #0c1326);
     z-index: 2;
 }
@@ -523,6 +522,22 @@ function rightSlide() {
     align-items: center;
     position: absolute;
     transition: transform .3s linear;
+}
+
+
+@media only screen and (min-width: 1501px) {
+    .main .slides {
+        margin: 0 12rem;
+    }
+    .main .img__box {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 1500px) {
+    .main .img__box {
+        width: 60%;
+    }
 }
 
 @media only screen and (max-width: 991px) {
