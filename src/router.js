@@ -58,7 +58,7 @@ const router = createRouter({
       name: "shop",
       children: [
         {
-          path: "",
+          path: "/shop",
           component: Shop,
         },
         {

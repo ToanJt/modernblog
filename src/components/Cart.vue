@@ -28,7 +28,7 @@ watch(() => cart,
         test();
     }
     , {
-        immediate: true,
+        // immediate: true,
         deep: true
     })
 
