@@ -1,5 +1,12 @@
 <script setup>
-import { ref, defineEmits } from "vue"
+import { ref, defineEmits } from 'vue'
+import userAuth from '@/composable/useAuth.js'
+
+const { signUp } = userAuth();
+const userData = ref({
+    email: '',
+    password: '',
+})
 
 const active = ref(false);
 function toggle() {
@@ -30,11 +37,11 @@ function activeSignIn() {
         <p class="formCenter">Welcome to Modern Blog</p>
         <div class="formCenter name">
             <label for="email">Email</label>
-            <input type="text" id="email" placeholder="Enter your Email">
+            <input v-model="userData.email" type="text" id="email" placeholder="Enter your Email">
         </div>
         <div class="formCenter password">
             <label for="password">Password</label>
-            <input class="passwordView" type="password" name="" id="password" placeholder="Enter your password">
+            <input v-model="userData.password" class="passwordView" type="password" name="" id="password" placeholder="Enter your password">
             <div v-if="active" class="eyes">
                 <img @click="toggle" src="@/assets/common/view.png" alt="">
             </div>
@@ -46,7 +53,7 @@ function activeSignIn() {
             <label for="confirm">Confirm password</label>
             <input type="password" name="" id="confirm" placeholder="Confirm your password">
         </div>
-        <button class="formCenter">Register</button>
+        <button @click.prevent="signUp(userData.email, userData.password)" class="formCenter">Register</button>
         <h4 @click="activeSignIn" class="formCenter">Do you already have an account?</h4>
     </form>
 </template>

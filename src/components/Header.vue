@@ -1,7 +1,11 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import Cart from "@/components/Cart.vue"
-import cart from '@/cart.js'
+import userAuth from '@/composable/useAuth.js'
+import useCart from '@/composable/useCart';
+
+const { logOut, userStatus } = userAuth();
+const { yourCart } = useCart();
 
 const closeModal = ref(false);
 function modal() {
@@ -11,15 +15,6 @@ function closes(data) {
     closeModal.value = data;
 }
 
-const cartQuantity = ref(0);
-watch(() => cart,
-    () => {
-        cartQuantity.value = cart.value.length;
-    },
-    {
-        immediate: true,
-        deep: true,
-    })
 
 const activeMenuBarVar = ref(false);
 function activeMenuBar() {
@@ -56,7 +51,8 @@ function closeMenuBar() {
                 <li class="dot">•</li>
                 <li><router-link @click="closeMenuBar()" to="/contact">Contact</router-link></li>
                 <li class="dot">•</li>
-                <li><router-link @click="closeMenuBar()" to="/signin">SignIn</router-link></li>
+                <li v-if="!userStatus"><router-link @click="closeMenuBar()" to="/signin">SignIn</router-link></li>
+                <li class="logout" v-if="userStatus" @click="logOut">LOGOUT</li>
             </ul>
             <ul class="user">
                 <li @click="modal" class="cart__icon"><svg class="w-commerce-commercecartopenlinkicon cart-icon"
@@ -68,7 +64,7 @@ function closeMenuBar() {
                         </g>
                     </svg>
                     <div class="miniCart">
-                        <p>{{ cartQuantity }}</p>
+                        <p>{{ yourCart.length }}</p>
                     </div>
                 </li>
             </ul>
@@ -161,6 +157,9 @@ function closeMenuBar() {
 
 .menubar {
     display: none;
+}
+.logout {
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 991px) {

@@ -1,7 +1,13 @@
 <script setup>
 import SignUp from '@/pages/SignUp.vue'
 import { ref } from 'vue'
+import userAuth from '@/composable/useAuth.js'
 
+const { signIn } = userAuth();
+const userData = ref({
+    email: '',
+    password: '',
+})
 const active = ref(false);
 function toggle() {
     const password = document.querySelector('.passwordView');
@@ -68,11 +74,11 @@ function activeSignIn() {
                 <p class="formCenter">Welcome to Modern Blog</p>
                 <div class="formCenter name">
                     <label for="name">Username or Email</label>
-                    <input type="text" id="name" placeholder="Enter...">
+                    <input v-model="userData.email" type="text" id="name" placeholder="Enter...">
                 </div>
                 <div class="formCenter password">
             <label for="password">Password</label>
-            <input class="passwordView" type="password" name="" id="password" placeholder="Enter password">
+            <input v-model="userData.password" class="passwordView" type="password" name="" id="password" placeholder="Enter password">
             <div v-if="active" class="eyes">
                 <img @click="toggle" src="@/assets/common/view.png" alt="">
             </div>
@@ -81,7 +87,7 @@ function activeSignIn() {
             </div>
         </div>
                 <h3 class="formCenter">Forgot password?</h3>
-                <button class="formCenter">Sign in</button>
+                <button @click.prevent="signIn(userData.email, userData.password)" class="formCenter">Sign in</button>
                 <h4 @click="toggleForm" class="formCenter">Register an account?</h4>
             </form>
         </div>

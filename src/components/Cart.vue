@@ -1,7 +1,9 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import { defineProps, defineEmits } from "vue";
-import cart from '@/cart.js';
+import useCart from '@/composable/useCart.js';
+
+const { yourCart, removeProduct, totalCost } = useCart();
 
 const props = defineProps({
     activeCloseModal: ref()
@@ -15,29 +17,7 @@ function func(event) {
     event.stopPropagation();
 }
 
-function test() {
-    const sum = ref(0);
-    cart.value.forEach((item) => {
-        sum.value += (item.quantity * item.price);
-    })
-    return (sum.value).toFixed(2);
-}
 
-watch(() => cart,
-    () => {
-        test();
-    }
-    , {
-        // immediate: true,
-        deep: true
-    })
-
-function removeItem(id) {
-    const itemIndex = cart.value.findIndex((item) => {
-        return item.id === id;
-    })
-    cart.value.splice(itemIndex, 1);
-}
 
 
 
@@ -52,24 +32,24 @@ function removeItem(id) {
                     <p @click="close()">&times;</p>
                 </div>
                 <div class="items">
-                    <div v-for="product in cart" :key="product.id" class="item">
+                    <div v-for="product in yourCart" :key="product.id" class="item">
                         <div class="info">
                             <img :src="product.image" alt="">
                             <div class="text">
                                 <p>{{ product.name }}</p>
                                 <p>$ {{ (product.price).toFixed(2) }} USD</p>
-                                <p @click="removeItem(product.id)" class="remove">Remove</p>
+                                <p @click="removeProduct(product.cid)" class="remove">Remove</p>
                             </div>
                         </div>
                         <div class="quantity">
-                            <input v-model="product.quantity" type="number" min="1" max="99" name="" id="">
+                            <input v-model="product.quantity" type="number" min="1" max="999" name="" id="">
                         </div>
                     </div>
                 </div>
                 <div class="checkout">
                     <div class="subtotal">
                         <p>Subtotal</p>
-                        <p>$ {{ test() }} USD</p>
+                        <p>$ {{ totalCost }} USD</p>
                     </div>
                     <div class="check">
                         <p>Continue to checkout</p>

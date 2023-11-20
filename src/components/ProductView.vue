@@ -1,7 +1,9 @@
 <script setup>
 import { defineProps, ref } from 'vue';
 import products from '@/products.js';
-import cart from '@/cart.js';
+import useCart from '@/composable/useCart';
+
+const { message, addToCart } = useCart();
 
 const props = defineProps(['product'])
 const product = products.find((product) => {
@@ -9,27 +11,6 @@ const product = products.find((product) => {
 })
 
 const showDisplayCart = ref(false);
-
-const quantity = ref(1);
-function addToCart(id, quantity) {
-    showDisplayCart.value = true;
-    setTimeout(() => {
-        showDisplayCart.value = false;
-    }, 280)
-    const product = products.find((item) => {
-        return item.id === id;
-    })
-
-    const checkInCart = cart.value.find((item) => {
-        return item.id === id;
-    })
-    if (checkInCart) {
-        product.quantity += quantity;
-    } else {
-        product.quantity = quantity;
-        cart.value.push(product);
-    }
-}
 
 
 
@@ -75,11 +56,12 @@ function addToCart(id, quantity) {
                     </div>
                     <div class="quantity">
                         <label for="quantity">Quantity</label>
-                        <input type="number" min="1" max="99" id="quantity" v-model="quantity">
+                        <input type="number" min="1" max="99" id="quantity" v-model="product.quantity">
                     </div>
-                    <div @click="addToCart(product.id, quantity)" class="addButton">
+                    <div @click="addToCart(product)" class="addButton">
                         <p>Add to cart</p>
                     </div>
+                    <p class="message">{{ message }}</p>
                 </form>
             </div>
             <div v-motion :initial="{
@@ -296,6 +278,10 @@ function addToCart(id, quantity) {
     line-height: 1.5rem;
 }
 
+.message {
+    margin-top: 1rem;
+    color: red;
+}
 
 @media only screen and (max-width: 991px) {
     .product {
